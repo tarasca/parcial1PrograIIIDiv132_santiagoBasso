@@ -17,12 +17,20 @@
                 <input id="barSearch" type="text">
             </div>     
             <span class="carrito" id="elementos-carrito">carrito: 0</span>
+            <span class="localStorage" id="storage">elementos: </span>
         </nav>
     </header>
     <main>
-        <h2>Nuestras frutas</h2>
+        <div class="grid-header">
+            
+            <button class="ordenar-nombre" id="btnNombre">ordenar nombre</button>
+            <h2>Nuestras frutas</h2>
+            <button class="ordenar-precio" id="btnPrecio">ordenar precio</button>
+            
+        </div>
+        
         <section class="container-frutas" id="containerFrutas"></section>
-        <aside class="barCarrito" id="carrito">carrito</aside>
+        <aside class="barCarrito" id="carrito"></aside>
     </main>
 </body>
 </html>

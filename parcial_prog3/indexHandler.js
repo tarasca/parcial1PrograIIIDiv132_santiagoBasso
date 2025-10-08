@@ -17,11 +17,16 @@ let frutas = [
 
 carrito = [];
 bajas = [];
+let state = false;
 
 let barAuthor = document.querySelector("#barAuthor");
 let containerFrutas = document.querySelector("#containerFrutas");
 let containerCarrito = document.querySelector("#carrito");
+let elementosCarrito = document.querySelector("#elementos-carrito");
 let barSearch = document.querySelector("#barSearch");
+let datos = document.querySelector("#storage");
+let btnNombre = document.querySelector("#btnNombre");
+let btnPrecio = document.querySelector("#btnPrecio");
 
 let yo = {dni:"42.778.074", nombre:"santiago", apellido:"basso"};
 
@@ -54,15 +59,18 @@ function agregarCarrito(id){
 
 function mostrarCarrito(){
     let cardCarrito = "<ul>";
+    let total = 0;
     carrito.forEach((elemento, indice) => {
         cardCarrito += `
         <li class="bloque-item">
             <p class="nombre-item">${elemento.nombre} - $ ${elemento.precio}</p>
             <button class="boton-eliminar" onclick="eliminarElemento(${indice})">Eliminar</button>
         </li>`
-        document.getElementById("elementos-carrito").innerText = `carrito: ${indice}`
+        document.getElementById("elementos-carrito").innerText = `carrito: ${indice+1}`
+        total += elemento.precio;
     });
     cardCarrito += "</ul><button onclick='vaciarCarrito()'> Vaciar carrito </button>";
+    cardCarrito += `<br></ul>precio totalitario: $ ${total}`
     containerCarrito.innerHTML = cardCarrito;
 
     console.log("mostrar carrito: "+ JSON.stringify(carrito));
@@ -78,7 +86,7 @@ function eliminarElemento(indice){
             bajas.push(f);
         }
     })
-    localStorage.setItem("bajas", value);
+    localStorage.setItem("bajas", JSON.stringify(bajas));
     //console.table(carrito);
     mostrarCarrito();
 }
@@ -86,6 +94,7 @@ function eliminarElemento(indice){
 function vaciarCarrito(){
     carrito = [];
     containerCarrito.innerHTML = "";
+    elementosCarrito.innerHTML = "carrito: 0";
 }
 
 barSearch.addEventListener("keyup", () => {
@@ -100,6 +109,47 @@ function filtrarProductos(){
     mostrarFrutas(frutasFiltradas);
 }
 
+
+
+btnNombre.addEventListener('click', () => {
+    
+    if(state == true){
+        mostrarFrutas(frutas.sort((a, b)=>{
+            if(a.nombre < b.nombre) return -1;
+            if(a.nombre > b.nombre) return 1;
+            return 0;
+        }));
+        state = true;
+    }
+    else{
+        mostrarFrutas(frutas.sort((a, b) => {
+            if(a.nombre > b.nombre) return -1;
+            if(a.nombre < b.nombre) return 1;
+            return 0;
+        }));
+        state = false;
+    }
+});
+
+btnPrecio.addEventListener('click', () => {
+    if(state == true){
+        mostrarFrutas(frutas.sort((a, b) => {
+            if(a.precio > b.precio) return -1;
+            if(a.precio < b.precio) return 1;
+            return 0;
+        }));
+        state = false;
+    }
+    else{
+        mostrarFrutas(frutas.sort((a, b)=>{
+            if(a.precio > b.precio) return 1;
+            if(a.precio < b.precio) return -1;
+            return 0;
+        }));
+        state = true;
+    }
+});
+
 function imprimirDatosAlumno(){
     barAuthor.textContent = `${yo.nombre} ${yo.apellido}`
     console.log(`${yo.nombre} ${yo.apellido}`);
@@ -109,6 +159,7 @@ function imprimirDatosAlumno(){
 function init(){
     imprimirDatosAlumno();
     mostrarFrutas(frutas);
+    datos.innerHTML = localStorage.getItem("carrito").length;
 };
 
 // métodos de localStorage :

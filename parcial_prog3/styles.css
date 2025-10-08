@@ -3,6 +3,17 @@ h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.ordenar-nombre{
+    margin: 5px;
+}
+.ordenar-precio{
+   margin: 5px;
+}
+.grid-header{
+    flex-direction: column;
+    text-align: center;
+}
+
 .topbar{
     margin: 3px;
     padding: 2px;
@@ -26,6 +37,10 @@ h2{
     margin-right: auto;
     text-align: right;
     background-color: #3B7A57;
+}
+.localStorage{
+    margin: 5px;
+    background-color: #00CC99;
 }
 .barCarrito{
     text-align: center;
