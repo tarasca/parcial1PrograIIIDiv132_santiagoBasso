@@ -1,0 +1,49 @@
+h2{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.topbar{
+    margin: 3px;
+    padding: 2px;
+    border: 2px solid;
+    background-color: #8DB600;
+}
+.barTitle{
+    margin: 5px;
+}
+.barAuthor{
+    text-align: center;
+    margin-right: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #B0BF1A;
+}
+.barSearch{
+    text-align: center;
+}
+.carrito{
+    margin: 5px;
+    margin-right: auto;
+    text-align: right;
+    background-color: #3B7A57;
+}
+.barCarrito{
+    text-align: center;
+}
+
+.container-frutas{
+    height: 700px;
+    border: 2px solid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card-fruta img{
+    width: 50px;
+    height: 50px;
+}
+
+.card-fruta{
+    margin: 5px;
+}
