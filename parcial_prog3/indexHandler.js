@@ -15,8 +15,8 @@ let frutas = [
     {id: 12, nombre:"sandia", precio:56, path_img:'img/sandia.jpg'},
 ];
 
-carrito = [];
-bajas = [];
+let carrito = [];
+let bajas = [];
 let state = false;
 
 let barAuthor = document.querySelector("#barAuthor");
@@ -109,17 +109,15 @@ function filtrarProductos(){
     mostrarFrutas(frutasFiltradas);
 }
 
-
-
+//usando variable state hago q los botones alternen entre ordenamientos
 btnNombre.addEventListener('click', () => {
-    
     if(state == true){
         mostrarFrutas(frutas.sort((a, b)=>{
-            if(a.nombre < b.nombre) return -1;
             if(a.nombre > b.nombre) return 1;
+            if(a.nombre < b.nombre) return -1;
             return 0;
         }));
-        state = true;
+        state = false;
     }
     else{
         mostrarFrutas(frutas.sort((a, b) => {
@@ -127,10 +125,9 @@ btnNombre.addEventListener('click', () => {
             if(a.nombre < b.nombre) return 1;
             return 0;
         }));
-        state = false;
+        state = true;
     }
 });
-
 btnPrecio.addEventListener('click', () => {
     if(state == true){
         mostrarFrutas(frutas.sort((a, b) => {
